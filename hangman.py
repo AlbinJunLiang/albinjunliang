@@ -9,10 +9,11 @@
 
 def replace_words (word_to_guess = 'BANANA', current_guess = '_____', character = ''):
 
-    current_guess = list(current_guess)
-    if character.upper() not in word_to_guess:
-        return
-    
+    if not containCharacter(word_to_guess, character):
+        return current_guess
+    else:
+        current_guess = list(current_guess)
+
     for i in range(len(word_to_guess)):
         if word_to_guess[i].upper() == character.upper():
             current_guess[i] = word_to_guess[i].capitalize()
@@ -20,57 +21,25 @@ def replace_words (word_to_guess = 'BANANA', current_guess = '_____', character 
     return "".join(current_guess)
 
 
+def is_guessed (word_to_guess, current_guess):
+    return word_to_guess == current_guess
 
-guessed_word = replace_words('BANANA', '______','A')
-print(guessed_word)
+def containCharacter (word_to_guess, character):
+    return character.upper() in word_to_guess
 
-guessed_word = replace_words('BANANA',guessed_word,'b')
-
-print(guessed_word)
-
-guessed_word = replace_words('BANANA',guessed_word,'f')
-
-
-
-print(guessed_word)
     
+guessed_word = "______"
+word_to_guess = "BANANA"
+opportunities = 2
+
+while not is_guessed('BANANA', guessed_word) and opportunities > 0:
+    print(f"Currrently the hidden word is: {guessed_word}")
+    character = input("Please enter a character:")
+    if not containCharacter(word_to_guess, character):
+        opportunities -=1
+        print(f"Invalid character, opportunity avaible: {opportunities}")
+    else:
+        guessed_word = replace_words(word_to_guess,guessed_word, character)
 
 
-
-
-""""
-// Online C# Editor for free
-// Write, Edit and Run your C# code using C# Online Compiler
-using System;
-
-public class HelloWorld
-{
-
-    static string guess (string a, string b , string c){
-
-    var ouput = b.ToCharArray();
-    for(int i = 0; i < a.Length; i++)
-    {
-        if(a[i].ToString() == c)
-        {
-               ouput[i] = a[i];
-        }
-        
-    }
-return string.Join("", ouput); ;
-    }
-    public static void Main(string[] args)
-    {
-
-        string texto = "CACA";
-       texto = guess(texto,"____", "C");
-        Console.WriteLine (texto);
-
-
-       texto = guess("CACA", texto, "A");
-        Console.WriteLine (texto);
-  
-
-    }
-}
-"""
+print("Word has been guessed: "+guessed_word)
