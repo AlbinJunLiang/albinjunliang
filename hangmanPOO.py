@@ -12,11 +12,11 @@ class Hangman:
     def containCharacter (self, character):
         return character.upper() in self.__word_to_guess.upper()
 
-
     def replace_words(self, character=''):
             # Si la letra no está en la palabra
+   
             if not self.containCharacter(character):
-                self.__opportunities -= 1  # Corregido: restamos 1 correctamente
+                self.opportunities -= 1  # Corregido: restamos 1 correctamente
                 return False  # Indicamos que falló
                         
             # Si la letra SÍ está, convertimos a lista para poder modificarla
@@ -41,9 +41,9 @@ class Hangman:
 
     @opportunities.setter
     def opportunities(self, new_opportunities):
-        if new_opportunities < 0:
+        if new_opportunities < 0 :
             print("Error: yo can not set negative opportunities.")
-        else:
+        elif self.opportunities > 0:
             self.__opportunities = new_opportunities
 
 
@@ -54,6 +54,7 @@ class Hangman:
     @word_to_guess.setter
     def word_to_guess(self, new_word_to_guess):
         self.__word_to_guess = new_word_to_guess
+        self.__hidden_word = self.__generate_hidden_word(new_word_to_guess)
 
     @property
     def hidden_word (self):
@@ -63,20 +64,8 @@ class Hangman:
     def hidden_word(self, new_hidden_word):
         self.__hidden_word = new_hidden_word
 
+    def __str__(self):
+            return f"Palabra oculta: {self.__hidden_word} | Vidas restantes: {self.__opportunities}"
 
-game = Hangman(None, input("Enter a word to gueess: "), 6)
 
 
-
-while not game.is_guessed() and game.opportunities > 0:
-    print(f"Currrently the hidden word is: {game.hidden_word}")
-    character = input("Please enter a character:")
-
-    ok = game.replace_words(character)
-    if not ok:
-        print(f"Invalid character, opportunities available: {game.opportunities}")  
-
-if game.is_guessed():
-    print("Word has been guessed: "+game.hidden_word)
-else:
-    print("Try it again :)")
