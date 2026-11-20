@@ -1,5 +1,5 @@
 import tkinter as tk
-from hangmanPOO import Hangman
+from albin.python.hangman.hangmanPOO import Hangman
 
 
 class HangmanGUI:

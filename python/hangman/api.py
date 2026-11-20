@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import uvicorn  # <--- IMPORTARLO AQUÍ ARRIBA
+import uvicorn 
 
 app = FastAPI()
 

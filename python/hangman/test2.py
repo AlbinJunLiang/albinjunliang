@@ -1,7 +1,6 @@
-from hangmanRandom import HangmanRandom
+from albin.python.hangman.hangmanRandom import HangmanRandom
 
 game = HangmanRandom(None, 2, ["FRUITS", "JAMAICA", "HELLO", "SAND"])
-
 
 print(game)
 

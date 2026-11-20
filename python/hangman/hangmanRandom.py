@@ -1,4 +1,4 @@
-from hangmanPOO import Hangman
+from albin.python.hangman.hangmanPOO import Hangman
 import random
 
 class HangmanRandom (Hangman):

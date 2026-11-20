@@ -1,7 +1,6 @@
-from hangmanPOO import Hangman
+from albin.python.hangman.hangmanPOO import Hangman
 
 game = Hangman(None, input("Enter a word to gueess: "), 6)
-
 
 print(game)
 
